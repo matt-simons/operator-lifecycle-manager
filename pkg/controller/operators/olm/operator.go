@@ -1284,6 +1284,9 @@ func (a *Operator) syncClusterServiceVersion(obj interface{}) (syncError error) 
 		a.logger.Debugf("wrong type: %#v", obj)
 		return fmt.Errorf("casting ClusterServiceVersion failed")
 	}
+	if clusterServiceVersion == nil {
+		return fmt.Errorf("ClusterServiceVersion does not exist")
+	}
 
 	logger := a.logger.WithFields(logrus.Fields{
 		"id":        queueinformer.NewLoopID(),
